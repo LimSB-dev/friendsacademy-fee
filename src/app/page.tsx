@@ -59,9 +59,9 @@ export default function Home() {
   );
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="flex h-screen flex-col items-center justify-between p-24 gap-4">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <div className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 py-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+        <div className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 py-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 z-10">
           <Image
             src="/bi.png"
             width={200}
@@ -69,14 +69,18 @@ export default function Home() {
             alt="Friends Academy Logo"
           />
         </div>
-        <div className="flex gap-4">
-          <div className="flex justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 py-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit static w-auto rounded-xl border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-            <h1 className="my-2">{total} 원</h1>
+
+        <div className="flex gap-4 w-full justify-center">
+          <div className="border-b border-gray-300 bg-gradient-to-b from-zinc-200 py-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit w-auto rounded-xl border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
+            <h1 className="my-2 px-4">
+              {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원
+            </h1>
           </div>
           <button type="button" onClick={() => resetFee()}>
             초기화
           </button>
         </div>
+
         <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
           <a
             className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
@@ -84,7 +88,7 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            Powered By{" "}
+            By{" "}
             <Image
               src="/vercel.svg"
               alt="Vercel Logo"
@@ -108,13 +112,16 @@ export default function Home() {
         />
       </div>
 
-      <div className="fixed flex flex-col gap-4 top-48">
+      <div className="flex flex-col gap-4 h-1/2 w-full items-center px-8 lg:overflow-y-scroll">
         {feeList.map((value, key) => (
           <div key={key} className="flex gap-4">
             <h2 className="fee">
               시간 : {value.time[0]} / 인원 : {value.people} / 게임 :{" "}
               {value.game} / 코스 : {value.course[0]} / 요금 :{" "}
-              {value.time[1] * value.people * value.game * value.course[1]} 원
+              {(value.time[1] * value.people * value.game * value.course[1])
+                .toString()
+                .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
+              원
             </h2>
             <button type="button" onClick={() => removeFee(key)}>
               X
@@ -236,7 +243,7 @@ export default function Home() {
           </div>
         </div>
         <input
-          className="card w-full text-center cursor-pointer"
+          className=" mb-72 lg:mb-0 card w-full text-center cursor-pointer"
           type="submit"
           value="등록"
           onClick={addFee}
