@@ -123,123 +123,125 @@ export default function Home() {
         ))}
       </div>
 
-      <div className="mb-20 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left gap-4 lg:gap-0">
-        <div className="card">
-          <header className="flex mb-3 align-bottom gap-1">
-            <h2 className="text-2xl font-semibold">시간</h2>
-            <Image
-              className="height-auto"
-              src="/time.png"
-              width={32}
-              height={32}
-              alt="Time Icon"
+      <div>
+        <div className="mb-20 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left gap-4 lg:gap-0">
+          <div className="card">
+            <header className="flex mb-3 align-bottom gap-1">
+              <h2 className="text-2xl font-semibold">시간</h2>
+              <Image
+                className="height-auto"
+                src="/time.png"
+                width={32}
+                height={32}
+                alt="Time Icon"
+              />
+            </header>
+            <div className="flex flex-col gap-1">
+              {Object.entries(time).map((value, key) => (
+                <div
+                  key={key}
+                  className="flex items-center justify-between hover:text-blue-500"
+                >
+                  <label htmlFor="time" id={value[1][0]}>
+                    {value[1][0]}
+                  </label>
+                  <input
+                    id={value[0]}
+                    className="mr-2"
+                    type="radio"
+                    name="time"
+                    value={key}
+                    onClick={() => setTimeIndex(key)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="card">
+            <header className="flex mb-3 align-bottom gap-1">
+              <h2 className="text-2xl font-semibold">인원</h2>
+              <Image
+                className="height-auto"
+                src="/golfer.png"
+                width={32}
+                height={32}
+                alt="Golfer Icon"
+              />
+            </header>
+            <input
+              className="p-2 w-full bg-white dark:bg-black backdrop:blur-sm"
+              type="number"
+              name="people"
+              id="people"
+              value={people}
+              onChange={(e) => setPeople(parseInt(e.target.value))}
+              required
             />
-          </header>
-          <div className="flex flex-col gap-1">
-            {Object.entries(time).map((value, key) => (
-              <div
-                key={key}
-                className="flex items-center justify-between hover:text-blue-500"
-              >
-                <label htmlFor="time" id={value[1][0]}>
-                  {value[1][0]}
-                </label>
-                <input
-                  id={value[0]}
-                  className="mr-2"
-                  type="radio"
-                  name="time"
-                  value={key}
-                  onClick={() => setTimeIndex(key)}
-                />
-              </div>
-            ))}
+          </div>
+
+          <div className="card">
+            <header className="flex mb-3 align-bottom gap-1">
+              <h2 className="text-2xl font-semibold">게임</h2>
+              <Image
+                className="height-auto"
+                src="/game.png"
+                width={32}
+                height={32}
+                alt="Game Icon"
+              />
+            </header>
+            <input
+              className="p-2 w-full bg-white dark:bg-black backdrop:blur-sm"
+              type="number"
+              name="game"
+              id="game"
+              value={game}
+              onChange={(e) => setGame(parseInt(e.target.value))}
+              required
+            />
+          </div>
+
+          <div className="card">
+            <header className="flex mb-3 align-bottom gap-1">
+              <h2 className="text-2xl font-semibold">코스</h2>
+              <Image
+                className="height-auto"
+                src="/course.png"
+                width={32}
+                height={32}
+                alt="Course Icon"
+              />
+            </header>
+            <div className="flex flex-col gap-1">
+              {Object.entries(course).map((value, key) => (
+                <div
+                  key={key}
+                  className="flex items-center justify-between hover:text-blue-500"
+                >
+                  <label htmlFor="course" id={value[1][0]}>
+                    {value[1][0]}
+                  </label>
+                  <input
+                    id={value[0]}
+                    className="mr-2"
+                    type="radio"
+                    name="course"
+                    value={key}
+                    onClick={() => setCourseIndex(key)}
+                  />
+                </div>
+              ))}
+            </div>
           </div>
         </div>
-
-        <div className="card">
-          <header className="flex mb-3 align-bottom gap-1">
-            <h2 className="text-2xl font-semibold">인원</h2>
-            <Image
-              className="height-auto"
-              src="/golfer.png"
-              width={32}
-              height={32}
-              alt="Golfer Icon"
-            />
-          </header>
-          <input
-            className="p-2 w-full bg-white dark:bg-black backdrop:blur-sm"
-            type="number"
-            name="people"
-            id="people"
-            value={people}
-            onChange={(e) => setPeople(parseInt(e.target.value))}
-            required
-          />
-        </div>
-
-        <div className="card">
-          <header className="flex mb-3 align-bottom gap-1">
-            <h2 className="text-2xl font-semibold">게임</h2>
-            <Image
-              className="height-auto"
-              src="/game.png"
-              width={32}
-              height={32}
-              alt="Game Icon"
-            />
-          </header>
-          <input
-            className="p-2 w-full bg-white dark:bg-black backdrop:blur-sm"
-            type="number"
-            name="game"
-            id="game"
-            value={game}
-            onChange={(e) => setGame(parseInt(e.target.value))}
-            required
-          />
-        </div>
-
-        <div className="card">
-          <header className="flex mb-3 align-bottom gap-1">
-            <h2 className="text-2xl font-semibold">코스</h2>
-            <Image
-              className="height-auto"
-              src="/course.png"
-              width={32}
-              height={32}
-              alt="Course Icon"
-            />
-          </header>
-          <div className="flex flex-col gap-1">
-            {Object.entries(course).map((value, key) => (
-              <div
-                key={key}
-                className="flex items-center justify-between hover:text-blue-500"
-              >
-                <label htmlFor="course" id={value[1][0]}>
-                  {value[1][0]}
-                </label>
-                <input
-                  id={value[0]}
-                  className="mr-2"
-                  type="radio"
-                  name="course"
-                  value={key}
-                  onClick={() => setCourseIndex(key)}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
+        <input
+          className="card w-full text-center cursor-pointer"
+          type="submit"
+          value="등록"
+          onClick={addFee}
+        />
       </div>
-      <input
-        className="card w-full text-center cursor-pointer"
-        type="submit"
-        value="등록"
-        onClick={addFee}
-      />
     </main>
   );
 }
