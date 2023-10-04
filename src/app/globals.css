@@ -1,0 +1,56 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+.fee {
+  @apply rounded-lg border border-transparent px-5 py-4 transition-colors;
+  @apply border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 backdrop-blur-sm;
+}
+
+.card {
+  @apply rounded-lg border border-transparent px-5 py-4 transition-colors;
+  @apply border-gray-300 bg-gray-100 dark:border-neutral-700 dark:bg-neutral-800/30 backdrop-blur-sm;
+  @apply lg:border-opacity-0 lg:dark:bg-transparent lg:backdrop-blur-none;
+  @apply hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700;
+  @apply hover:dark:bg-neutral-800/30 hover:backdrop-blur-sm;
+}
+
+@keyframes custom-float {
+  0% {
+    transform: translateY(0) rotate(-5deg);
+  }
+  50% {
+    transform: translateY(50%) rotate(5deg);
+  }
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+}
+
+.custom-float {
+  animation: custom-float 30s infinite;
+}
