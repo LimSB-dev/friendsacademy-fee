@@ -16,8 +16,8 @@ type FeeList = Fee[];
 export default function Home() {
   const [feeList, setFeeList] = useState<FeeList>([]);
   const [timeIndex, setTimeIndex] = useState(0);
-  const [people, setPeople] = useState(0);
-  const [game, setGame] = useState(0);
+  const [people, setPeople] = useState(1);
+  const [game, setGame] = useState(1);
   const [courseIndex, setCourseIndex] = useState(0);
 
   const time: Option[] = [
@@ -31,11 +31,6 @@ export default function Home() {
   ];
 
   const addFee = () => {
-    if (people === 0 || game === 0) {
-      alert("인원과 게임 수는 0이 될 수 없습니다.");
-      return;
-    }
-
     const fee: Fee = {
       time: time[timeIndex],
       people: people,
@@ -158,6 +153,7 @@ export default function Home() {
                     type="radio"
                     name="time"
                     value={key}
+                    checked={timeIndex === key}
                     onClick={() => setTimeIndex(key)}
                   />
                 </div>
@@ -182,6 +178,7 @@ export default function Home() {
               name="people"
               id="people"
               value={people}
+              min={1}
               onChange={(e) => setPeople(parseInt(e.target.value))}
               required
             />
@@ -204,6 +201,7 @@ export default function Home() {
               name="game"
               id="game"
               value={game}
+              min={1}
               onChange={(e) => setGame(parseInt(e.target.value))}
               required
             />
@@ -235,6 +233,7 @@ export default function Home() {
                     type="radio"
                     name="course"
                     value={key}
+                    checked={timeIndex === key}
                     onClick={() => setCourseIndex(key)}
                   />
                 </div>

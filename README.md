@@ -1,36 +1,56 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# 스크린골프 요금 계산
 
-## Getting Started
+여자친구 아르바이트 조금이라도 편하게 하라고 만들어봤습니다.
 
-First, run the development server:
+## 요금 계산 방법
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### 시간
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- 10:00 ~ 12:00 : 10000원
+- 12:00 ~ 17:00 : 15000원
+- 17:00 ~ 이후 : 18000원
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 코스
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- 9홀 : 0.5배
+- 18홀 : 1배
 
-## Learn More
+### 계산 방법
 
-To learn more about Next.js, take a look at the following resources:
+- 시간대별 요금 _ 인원 수 _ 게임 수 \* 코스당 요금
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 구현
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### 게임 추가
 
-## Deploy on Vercel
+![게임 추가](docs/calculate-fee.gif)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+    등록을 누르면 게임이 추가됩니다.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+    전체 게임의 합계는 해더에서 `총 요금`에 표시됩니다.
+
+### 게임 삭제
+
+![게임 삭제](docs/remove-fee.gif)
+
+    X 버튼을 통해 하나의 게임을 삭제할 수 있습니다.
+
+    초기화 버튼을 누르면 모든 게임이 삭제됩니다.
+
+### 예외 처리
+
+![예외 처리](docs/alert.gif)
+
+    인원 수와 게임 수는 1 이상이어야 합니다.
+
+### 반응형
+
+![반응형](docs/responsive.png)
+
+    모바일 환경에서도 사용할 수 있습니다.
+
+## 회고
+
+1. 이후 생각해 봤는데 기본 인원과 게임을 1로 설정하고 input의 min 속성을 1로 설정하면 예외 처리를 할 필요가 없다고 생각해 예외처리를 제거했습니다.
+
+2. 또한 시간과 코스의 default check 값을 설정해 UX를 개선했습니다.
