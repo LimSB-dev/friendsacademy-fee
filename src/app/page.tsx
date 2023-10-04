@@ -54,10 +54,11 @@ export default function Home() {
   );
 
   return (
-    <main className="flex h-screen flex-col items-center justify-between p-24 gap-4">
+    <main className="flex h-full lg:h-screen flex-col items-center justify-between p-24 gap-4">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
         <div className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 py-6 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 z-10">
           <Image
+            className="invert dark:invert-0"
             src="/bi.png"
             width={200}
             height={100}
@@ -71,7 +72,7 @@ export default function Home() {
               {total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")} 원
             </h1>
           </div>
-          <button type="button" onClick={() => resetFee()}>
+          <button className="card" type="button" onClick={() => resetFee()}>
             초기화
           </button>
         </div>
@@ -107,7 +108,7 @@ export default function Home() {
         />
       </div>
 
-      <div className="flex flex-col gap-4 h-1/2 w-full items-center px-8 lg:overflow-y-scroll">
+      <div className="flex flex-col gap-4 h-1/2 w-full items-center lg:overflow-y-scroll">
         {feeList.map((value, key) => (
           <div key={key} className="flex gap-4">
             <h2 className="fee">
@@ -118,15 +119,19 @@ export default function Home() {
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ",")}{" "}
               원
             </h2>
-            <button type="button" onClick={() => removeFee(key)}>
+            <button
+              className="card"
+              type="button"
+              onClick={() => removeFee(key)}
+            >
               X
             </button>
           </div>
         ))}
       </div>
 
-      <div>
-        <div className="mb-20 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left gap-4 lg:gap-0">
+      <div className="flex flex-col gap-4 w-full lg:w-fit">
+        <div className="mb-20 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left gap-4">
           <div className="card">
             <header className="flex mb-3 align-bottom gap-1">
               <h2 className="text-2xl font-semibold">시간</h2>
@@ -142,16 +147,21 @@ export default function Home() {
               {Object.entries(time).map((value, key) => (
                 <div
                   key={key}
-                  className="flex items-center justify-between hover:text-blue-500"
+                  className="flex items-center justify-between hover:text-blue-500 cursor-pointer"
+                  onClick={() => setTimeIndex(key)}
                 >
-                  <label htmlFor="time" id={value[1][0]}>
+                  <label
+                    className="cursor-pointer"
+                    htmlFor={value[1][0]}
+                    id={value[1][0]}
+                  >
                     {value[1][0]}
                   </label>
                   <input
                     id={value[0]}
-                    className="mr-2"
+                    className="mr-2 cursor-pointer"
                     type="radio"
-                    name="time"
+                    name={value[1][0]}
                     value={key}
                     checked={timeIndex === key}
                     onClick={() => setTimeIndex(key)}
@@ -173,7 +183,9 @@ export default function Home() {
               />
             </header>
             <input
-              className="p-2 w-full bg-white dark:bg-black backdrop:blur-sm"
+              className="p-2 rounded-md w-full bg-gray-100/80 dark:bg-neutral-800/30 backdrop:blur-sm text-right
+              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+              border border-gray-300 dark:border-neutral-800/30"
               type="number"
               name="people"
               id="people"
@@ -196,7 +208,9 @@ export default function Home() {
               />
             </header>
             <input
-              className="p-2 w-full bg-white dark:bg-black backdrop:blur-sm"
+              className="p-2 rounded-md w-full bg-gray-100/80 dark:bg-neutral-800/30 backdrop:blur-sm text-right
+              focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50
+              border border-gray-300 dark:border-neutral-800/30"
               type="number"
               name="game"
               id="game"
@@ -222,18 +236,23 @@ export default function Home() {
               {Object.entries(course).map((value, key) => (
                 <div
                   key={key}
-                  className="flex items-center justify-between hover:text-blue-500"
+                  className="flex items-center justify-between hover:text-blue-500 cursor-pointer"
+                  onClick={() => setCourseIndex(key)}
                 >
-                  <label htmlFor="course" id={value[1][0]}>
+                  <label
+                    className="cursor-pointer"
+                    htmlFor={value[1][0]}
+                    id={value[1][0]}
+                  >
                     {value[1][0]}
                   </label>
                   <input
                     id={value[0]}
-                    className="mr-2"
+                    className="mr-2 cursor-pointer"
                     type="radio"
-                    name="course"
+                    name={value[1][0]}
                     value={key}
-                    checked={timeIndex === key}
+                    checked={courseIndex === key}
                     onClick={() => setCourseIndex(key)}
                   />
                 </div>
@@ -242,7 +261,8 @@ export default function Home() {
           </div>
         </div>
         <input
-          className=" mb-72 lg:mb-0 card w-full text-center cursor-pointer"
+          className="mb-72 lg:mb-0 border-none !bg-blue-200 hover:!bg-blue-400 card w-full text-center cursor-pointer dark:hover:bg-blue-800 dark:bg-blue-900 font-bold
+          "
           type="submit"
           value="등록"
           onClick={addFee}
