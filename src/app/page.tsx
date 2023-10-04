@@ -261,7 +261,7 @@ export default function Home() {
           </div>
         </div>
         <input
-          className="mb-72 lg:mb-0 border-none !bg-blue-200 hover:!bg-blue-400 card w-full text-center cursor-pointer dark:hover:bg-blue-800 dark:bg-blue-900 font-bold
+          className="mb-72 lg:mb-0 border-none !bg-blue-200 hover:!bg-blue-400 card w-full text-center cursor-pointer dark:hover:!bg-blue-800 dark:!bg-blue-900 font-bold
           "
           type="submit"
           value="등록"
